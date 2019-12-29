@@ -1,0 +1,22 @@
+OVERWATCH
+
+Overwatch is the part responsible for the creation of the events and acting on the commands received via SMS
+
+These are the main parts that compass the Overwatch program
+
+- Power outage detector
+	Reads a digital input to check if the power supply is off
+
+- Reads a file with the stimated card balance
+
+- Command interpreter
+	Take the received command by the user and acts accordingly
+
+- New password generator
+	Generate a random 4 digit new password if asked by the user the password can be change via INTERFACE
+
+- FIFO
+	A FIFO list that store all the messages wihle they are been sent due to MESSENGER only been able to handle one at time
+
+- Message order creator
+	Reads a pending message fromt the FIFO list and creates the file for MESSENGER to read.

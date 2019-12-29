@@ -1,0 +1,28 @@
+The structure of the code for the messages will be as follows
+
+EVENT ID
+
+XXYY
+
+X -> Will be the number that should receive the message
+Y -> Will be the code of wich message should be sent
+
+This is the list of possilbe messages, the text sent in each case can be changed via "interface"
+
+01	Power interrupted
+02	Battery in error
+
+11	Card balance too low
+12	Unknown SMS's received
+
+20	Received command not valid
+21	ACK Received
+22	NACK Received
+
+30	New command password is ****
+
+A file in the system will have the message text stored in a folder the file name is the same as the message code
+
+A file in the system will have the phone number stored the number will be the same as X code on the event ID
+
+

@@ -1,0 +1,81 @@
+----------------------------------------------------
+				Global Variables					
+----------------------------------------------------
+
+
+----------------------------------------------------
+				Global Functions					
+----------------------------------------------------
+
+void Add_Item_FIFO (Code)
+int Read_Item_FIFO ()
+void Wipe_FIFO ()
+int FIFO_Size ()
+
+----------------------------------------------------
+				Structures							
+----------------------------------------------------
+
++FIFO_Item
+	Message_Code		int
+	Nxt					*FIFO_Item
+	Prv					*FIFO_Item
+
+----------------------------------------------------
+				Private Variables					
+----------------------------------------------------
+
+FIFO_Head				*FIFO_Item
+FIFO_Tail				*FIFO_Item
+FIFO_Nr_of_Items		int
+
+----------------------------------------------------
+				Private Functions					
+----------------------------------------------------
+
+void Add_Item_Empty_FIFO (Item)
+void Add_Itme_Tail_FIFO (Item)
+
+----------------------------------------------------
+				Functions in detail					
+----------------------------------------------------
+
+Add_Item_FIFO
+
+	- Create Item and store code
+	+ If FIFO empty
+		- Call Add_Item_Empty_FIFO
+	+ Else
+		- Call Add_Item_Tail_FIFO
+	Add one to Number of Items
+
+Read_Item_FIFO
+
+	- Read Code on Head Item
+	- Move Head item's next to head
+	- Remove one from item number
+	- Remove item
+
+Wipe_FIFO
+
+	- Move 0 -> Tail
+	- Go tiem by tiem removing it
+	- Move 0 -> Head
+	- Number of item equal 0
+
+FIFO_Size
+
+	- Return number of items
+
+Add_Item_Empty_FIFO
+
+	- Save pointer in Head & Tail
+
+Add_Item_Tail_FIFO
+
+	-Save tail -> temp
+	-Save new tail
+	-Save pointer on prv_item on nxt value
+	-Save temp -> New item Prv
+
+
