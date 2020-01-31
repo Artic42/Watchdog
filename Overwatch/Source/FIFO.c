@@ -2,7 +2,13 @@
 *						FIFO						*
 ****************************************************/
 #include <stdlib.h>
-#include <FIFO.h>
+#include "FIFO.h"
+/****************************************************
+*					Structures						*
+****************************************************/
+
+#define Create_Item() malloc(sizeof(struct FIFO_Item))
+
 /****************************************************
 *					Structures						*
 ****************************************************/
@@ -39,9 +45,9 @@ void FIFO_Add_Item (int Code)
 	struct FIFO_Item *Item;
 	
 	//Allocate memory for Item and save the ponter to it in Item
-	Item = Create_Item()
+	Item = Create_Item();
 	//Save code in the new item
-	*Item.Message_Code = Code;
+	Item->Message_Code = Code;
 
 	if (FIFO_Nr_of_Item == 0) 	{ Add_Item_Empty_FIFO(Item); }
 	else						{ Add_Item_Tail_FIFO(Item); }
@@ -52,11 +58,10 @@ void FIFO_Add_Item (int Code)
 int FIFO_Read_Item (void)
 {
 	int Result;
-	struct FIFO_Item *Item_To_Delete;
 	//Sve result to return later
-	Result = *FIFO_Head.Message_Code;
+	Result = FIFO_Head->Message_Code;
 	//Remove element for FIFO and replace new HEAD
-	Remove_Item (FIFO_HEAD)
+	Remove_Item (FIFO_Head);
 	return Result;
 }
 
@@ -77,8 +82,9 @@ int FIFO_Size (void)
 
 void Remove_Item (struct FIFO_Item *Item)
 {
+	struct FIFO_Item *Item_To_Delete;
 	Item_To_Delete = FIFO_Head;
-	FIFO_Head = *FIFO_Head.Nxt;
+	FIFO_Head = FIFO_Head->Nxt;
 	free (Item_To_Delete);
 }
 
@@ -90,6 +96,6 @@ void Add_Item_Empty_FIFO (struct FIFO_Item *Item)
 
 void Add_Item_Tail_FIFO (struct FIFO_Item *Item)
 {
-	*Item.prv = FIFO_Tail;
+	Item->Prv = FIFO_Tail;
 	FIFO_Tail = Item;
 }
