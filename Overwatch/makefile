@@ -1,13 +1,13 @@
 #Constant definitions
 
 CC = gcc
-CFLAGS = -c -Wall
+CFLAGS = -c -g -Wall
 IPATH = -ISource/Header
 
 #default make file, makes the full application
 
 bin/Overwatch.app: Source/Overwatch.c bin/FIFO.o
-	$(CC) -Wall $(IPATH) Source/Overwatch.c bin/FIFO.o -o bin/Overwatch.app
+	$(CC) -g -Wall $(IPATH) Source/Overwatch.c bin/FIFO.o -o bin/Overwatch.app
 	@echo "Overwatch Builded"
 
 #Subordinate objects of the application
@@ -25,6 +25,9 @@ FIFO: bin/FIFO.o
 
 Run: bin/Overwatch.app
 	@bin/Overwatch.app
+
+Debug: bin/Overwatch.app
+	gdb bin/Overwatch.app
 
 clean: 
 	rm -f bin/*
