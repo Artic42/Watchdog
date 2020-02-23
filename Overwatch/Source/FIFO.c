@@ -96,6 +96,7 @@ void Add_Item_Empty_FIFO (struct FIFO_Item *Item)
 
 void Add_Item_Tail_FIFO (struct FIFO_Item *Item)
 {
+	FIFO_Tail->Nxt = Item;
 	Item->Prv = FIFO_Tail;
 	FIFO_Tail = Item;
 }

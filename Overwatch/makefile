@@ -27,7 +27,7 @@ Run: bin/Overwatch.app
 	@bin/Overwatch.app
 
 Debug: bin/Overwatch.app
-	gdb bin/Overwatch.app
+	@gdb bin/Overwatch.app
 
 clean: 
-	rm -f bin/*
+	@rm -f bin/*
