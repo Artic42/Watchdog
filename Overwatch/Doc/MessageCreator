@@ -1,0 +1,25 @@
+------------------------------------------------
+			Private Variable					
+------------------------------------------------
+
+MessagePath
+	Save the path to the folder in wich we store the pending message
+
+------------------------------------------------
+			Global Functions					
+------------------------------------------------
+
+ReadPath
+	Read the path for the messages from the config file
+
+CheckPending
+	Check if there is any pending messages if there is not "Create Message"
+
+------------------------------------------------
+			Private Functions					
+------------------------------------------------
+
+CreateMessage
+	Read element form FIFO and create file in the rigth path.
+
+
