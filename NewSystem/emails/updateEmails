@@ -1,0 +1,6 @@
+#!/bin/bash
+cd LightsOut
+tar -cf ../LightsOut.email *
+cd ../LightsBack
+tar -cf ../LightsBack.email *
+
