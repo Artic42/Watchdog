@@ -13,7 +13,6 @@ Testd on:	Raspberry Pi Zero W 2020
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <bcm2835.h>
 
 /****************************************
 *	Private Function Prtotype	*
@@ -21,19 +20,14 @@ Testd on:	Raspberry Pi Zero W 2020
 
 char determineSignalEdge (char Signal);
 char readSignal (void);
-void configureInput (void);
 
 /****************************************
 *	Private Definitions		*
 ****************************************/
 
-
-
 /****************************************
 *	Private Global Variables	*
 ****************************************/
-
-
 
 /****************************************
 *	Private Constants		*
@@ -43,8 +37,7 @@ void configureInput (void);
 #define RAISING 1
 #define FALLING 2
 
-#define INPUT RPI_V2_GPIO_P1_40
-
+#define SIGNAL_PATH "/tmp/GPIO21/SIGNAL"
 
 /****************************************
 *		Code			*
@@ -52,13 +45,8 @@ void configureInput (void);
 
 char readSignal ()
 {
-	if (access("SIGNAL", F_OK) == 0)	{ return 1; }
+	if (access(SIGNAL_PATH, F_OK) == 0)	{ return 1; }
 	else								{ return 0; }
-}
-
-void configureInput (void)
-{
-	;
 }
 
 char determineSignalEdge (char signal)
@@ -81,10 +69,10 @@ int main (void)
 
 	while (1)
 	{
-		sleep (10);
+		sleep (60);
 		Edge = determineSignalEdge (readSignal());
-		if (Edge == RAISING) { system ("python /home/artic/.bin/python/send-email.py emails/LightsBack.email"); }
-		if (Edge == FALLING) { system ("python /home/artic/.bin/python/send-email.py emails/LightsOut.email"); }
+		if (Edge == RAISING) { system ("python ~/.bin/python/send-email.py emails/LightsBack.email"); }
+		if (Edge == FALLING) { system ("python ~/.bin/python/send-email.py emails/LightsOut.email"); }
 	}
 	return 0;
 }
