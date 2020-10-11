@@ -1,0 +1,5 @@
+#!/bin/bash
+scp watchdog.app cerberus@192.168.10.29:~/watchdog.app
+scp Source/readInput.c cerberus@192.168.10.29:~/readInput.c
+
+ssh cerberus@192.168.10.29 'gcc -Wall -pthread -o readInput readInput.c -lpigpio -lrt'
