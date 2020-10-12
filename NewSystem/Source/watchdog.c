@@ -20,6 +20,7 @@ Testd on:	Raspberry Pi Zero W 2020
 
 char determineSignalEdge (char Signal);
 char readSignal (void);
+char exitProgram (void);
 
 /****************************************
 *	Private Definitions		*
@@ -38,6 +39,7 @@ char readSignal (void);
 #define FALLING 2
 
 #define SIGNAL_PATH "/tmp/GPIO21/SIGNAL"
+#define EXIT_PATH "/tmp/killWatchdog"
 
 /****************************************
 *		Code			*
@@ -46,6 +48,12 @@ char readSignal (void);
 char readSignal ()
 {
 	if (access(SIGNAL_PATH, F_OK) == 0)	{ return 1; }
+	else								{ return 0; }
+}
+
+char exitProgram ()
+{
+	if (access(EXIT_PATH, F_OK) == 0)	{ return 1; }
 	else								{ return 0; }
 }
 
@@ -67,7 +75,7 @@ int main (void)
 
 	determineSignalEdge (readSignal());
 
-	while (1)
+	while (exitProgram() == 0)
 	{
 		sleep (60);
 		Edge = determineSignalEdge (readSignal());

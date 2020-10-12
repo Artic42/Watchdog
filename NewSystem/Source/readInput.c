@@ -40,4 +40,6 @@ int main (void)
 		else				{ system ("rm -f /tmp/GPIO21/SIGNAL"); }
 		sleep (1);
 	}
+	gpioTerminate();
+	return (0);
 }
