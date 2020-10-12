@@ -21,21 +21,23 @@ Testd on:	Raspberry pi Zero W
 
 int main (void);
 
-#define PIN 21;
+#define PIN 21
 
 /****************************************
 *		Code			*
 ****************************************/
 
-int main (void);
+int main (void)
 {
-	gpioInitialise(void);
+	gpioInitialise();
 	gpioSetMode(PIN, PI_INPUT); 
 	gpioSetPullUpDown(PIN, PI_PUD_DOWN);
+	system ("mkdir -p /tmp/GPIO21");
 
 	while (1)
 	{
 		if (gpioRead(PIN))	{ system ("touch /tmp/GPIO21/SIGNAL"); }
-		else				{ system ("rm /tmp/GPIO21/SIGNAL"); }
+		else				{ system ("rm -f /tmp/GPIO21/SIGNAL"); }
 		sleep (1);
 	}
+}

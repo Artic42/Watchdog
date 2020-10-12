@@ -28,3 +28,6 @@ clean:
 	rm -f Binaries/*.o
 	rm *.app
 
+install:
+	cp watchdog.app ~/
+	cp readInput.app ~/
